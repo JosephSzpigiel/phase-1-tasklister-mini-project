@@ -3,20 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener('submit', e => {
     e.preventDefault()
     let todos = document.getElementById("tasks")
-    let p = document.createElement('p')
-    p.textContent = `${e.target["new-task-description"].value} `
+    let li = document.createElement('li')
+    li.textContent = `${e.target["new-task-description"].value} `
     let prioritySelected = e.target.priority.value
-    applyPriority(p,prioritySelected)
+    applyPriority(li,prioritySelected)
     let doneBtn = document.createElement('button')
     doneBtn.addEventListener('click', event => {
-      let doneP = document.createElement('p')
-      doneP.textContent = `${p.textContent}`
+      let doneP = document.createElement('li')
+      doneP.id = "donetask"
+      doneP.textContent = `${li.textContent}`
       document.querySelector("#tasksCompleted").append(doneP)
       event.target.parentNode.remove()
     })
     doneBtn.textContent = "Done!"
-    p.appendChild(doneBtn)
-    todos.append(p)
+    li.appendChild(doneBtn)
+    todos.append(li)
     form.reset()
     
     function applyPriority (element,priority){
