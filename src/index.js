@@ -15,12 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
       p.style.color = 'green'
       todos = document.getElementById("lowPriorityList")
     }
-    let deleteBtn = document.createElement('button')
-    deleteBtn.addEventListener('click', event => {
+    let doneBtn = document.createElement('button')
+    doneBtn.addEventListener('click', event => {
+      let doneP = document.createElement('p')
+      doneP.textContent = `${p.textContent}`
+      document.querySelector("#tasksCompleted").append(doneP)
+
       event.target.parentNode.remove()
     })
-    deleteBtn.textContent = "X"
-    p.appendChild(deleteBtn)
+    doneBtn.textContent = "Done!"
+    p.appendChild(doneBtn)
     todos.append(p)
     form.reset()
 
